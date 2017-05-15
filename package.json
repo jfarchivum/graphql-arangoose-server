@@ -1,6 +1,6 @@
 {
   "name": "@jfa/graphql-arangoose-server",
-  "description": "GraphQL Arangoose boilerplate",
+  "description": "Graphql Arangoose Boilerplate based on https://github.com/entria/graphql-dataloader-boilerplate",
   "version": "0.0.1",
   "dependencies": {
     "@jfa/arangoose": "0.0.1",
