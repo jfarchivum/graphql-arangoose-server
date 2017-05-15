@@ -3,6 +3,7 @@
   "description": "GraphQL Arangoose boilerplate",
   "version": "0.0.1",
   "dependencies": {
+    "@jfa/arangoose": "0.0.1",
     "babel-polyfill": "^6.23.0",
     "bcrypt-as-promised": "^1.1.0",
     "dataloader": "^1.3.0",
@@ -19,8 +20,7 @@
     "koa-graphql": "^0.6.2",
     "koa-graphql-batch": "^1.1.0",
     "koa-logger": "^2.0.1",
-    "koa-router": "^7.1.1",
-    "arangoose": "^4.9.4"
+    "koa-router": "^7.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
