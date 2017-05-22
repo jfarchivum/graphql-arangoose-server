@@ -1,34 +1,31 @@
 import { User } from '../../model';
+import { Password } from '../../model/User';
 import { setupTest } from '../../../test/helper';
-
-import mongooseLoader from '../mongooseLoader';
+import arangooseLoader from '../arangooseLoader';
 
 beforeEach(async () => await setupTest());
 
 it('should retrieve all ids in the correct order', async () => {
 
-    const user1 = new User({
-        name : 'User #1',
+    const user1 = await User.add({
+        name : 'User #6666666666666',
         email: 'user-1@email.com',
+        password: await User.encryptPassword('sdsd'),
+        active: true
     });
-
-    const user2 = new User({
-        name : 'User #2',
+    const user2 = await User.add({
+        name : 'User #222222222222',
         email: 'user-2@email.com',
     });
 
-    const user3 = new User({
+    const user3 = await User.add({
         name : 'User #3',
         email: 'user-3@email.com',
     });
 
-    await user1.save();
-    await user2.save();
-    await user3.save();
+    const idsToRetrieve = [user2._id, user1._id, user3._id];
 
-    const idsToRetrieve = [user2.id, user1.id, user3.id];
-
-    const results = await mongooseLoader(User, idsToRetrieve);
+    const results = await arangooseLoader(User, idsToRetrieve);
 
     expect(results).toHaveLength(3);
     expect(results[0].name).toBe(user2.name);
@@ -37,28 +34,25 @@ it('should retrieve all ids in the correct order', async () => {
 });
 
 it('should return error objects for missing ids', async () => {
-
-    const user1 = new User({
+    const user1 = await User.add({
         name : 'User #1',
         email: 'user-1@email.com',
     });
 
-    const user2 = new User({
+    const user2 = {
+        _id: 'fff',
         name : 'User #2',
         email: 'user-2@email.com',
-    });
+    };
 
-    const user3 = new User({
+    const user3 = await User.add({
         name : 'User #3',
         email: 'user-3@email.com',
     });
 
-    await user1.save();
-    await user3.save();
+    const idsToRetrieve = [user1._id, user2._id, user3._id];
 
-    const idsToRetrieve = [user1.id, user2.id, user3.id];
-
-    const results = await mongooseLoader(User, idsToRetrieve);
+    const results = await arangooseLoader(User, idsToRetrieve);
 
     expect(results).toHaveLength(3);
     expect(results[0].name).toBe(user1.name);
