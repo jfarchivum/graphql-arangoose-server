@@ -1,12 +1,7 @@
 // @flow
 import DataLoader from 'dataloader';
 import { User as UserModel } from '../model';
-import connectionFromPromisedArray from 'graphql-relay'
-
-import ConnectionFromMongoCursor from '../connection/ConnectionFromMongoCursor';
-import mongooseLoader from './mongooseLoader';
-
-import ConnectionFromArangoCursor from '../connection/ConnectionFromArangoCursor';
+import {connectionFromPromisedArray} from 'graphql-relay';
 import arangooseLoader from './arangooseLoader';
 
 type UserType = {
@@ -30,7 +25,7 @@ export default class User {
     this.name = data.name;
 
     // you can only see your own email, and your active status
-    if (viewer && viewer._id.equals(data._id)) {
+    if (viewer && viewer._id === data._id) {
       this.email = data.email;
       this.active = data.active;
     }
@@ -44,10 +39,10 @@ export default class User {
   }
 
   static async load({ user: viewer, dataloaders }, id) {
+
     if (!id) return null;
 
     const data = await dataloaders.UserLoader.load(id);
-
     if (!data) return null;
 
     return User.viewerCanSee(viewer, data) ? new User(data, viewer) : null;
@@ -66,11 +61,10 @@ export default class User {
   //   return ConnectionFromArangoCursor.connectionFromArangoCursor(context, users, args, User.load);
   // }
 
-  static async loadUsers(context, { connectionArgs, ...searchArgs }) {
+  static async loadUsers(context, { connectionArguments, ...searchArgs }) {
     const users = UserModel
-      .find({ name: searchArgs.search })
-      .sort({ createdAt: -1 });
-    return connectionFromPromisedArray(users, connectionArgs);
+      .find(searchArgs);
+    return connectionFromPromisedArray(users, connectionArguments);
   }
 }
 
