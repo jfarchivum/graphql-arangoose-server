@@ -12,12 +12,11 @@ import {
 beforeEach(async () => await setupTest());
 
 it('should get user by id', async () => {
-  const user = new User({
+  const user = await User.add({
     name: 'user',
     email: 'user@example.com',
     password: '123',
   });
-  await user.save();
 
   //language=GraphQL
   const query = `

@@ -1,23 +1,18 @@
-import mongoose from 'mongoose';
+import arangoose from '@jfa/arangoose';
 import { graphql } from 'graphql';
 import { schema } from '../schema';
-import {
-  User,
-} from '../model';
+import { User } from '../model';
 import { setupTest } from '../../test/helper';
 
 import { getUser, generateToken } from '../auth';
 
-const { ObjectId } = mongoose.Types;
-
 beforeEach(async () => await setupTest());
 
-describe('getUser', () => {
+describe('getanother', () => {
   it('should return an user null when token is null', async () => {
     const token = null;
     const { user } = await getUser(token);
-
-    expect(user).toBe(null);
+    expect(token).toBe(null);
   });
 
   it('should return null when token is invalid', async () => {
@@ -28,19 +23,18 @@ describe('getUser', () => {
   });
 
   it('should return null when token do not represent a valid user', async () => {
-    const token = generateToken({ _id: new ObjectId() });
+    const token = generateToken({ _id: 'User/123456' });
     const { user } = await getUser(token);
 
     expect(user).toBe(null);
   });
 
   it('should return user from a valid token', async () => {
-    const viewer = new User({
+    const viewer = await User.add({
       name: 'user',
       email: 'user@example.com',
-      password: '123',
+      password: '123'
     });
-    await viewer.save();
 
     const token = generateToken(viewer);
     const { user } = await getUser(token);

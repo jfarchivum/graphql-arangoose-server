@@ -11,16 +11,15 @@ import {
 
 beforeEach(async () => await setupTest());
 
-it('should not register with the an existing email', async () => {
+it('should not register with an existing email', async () => {
   const name = 'awesome';
   const email = 'awesome@example.com';
 
-  const user = new User({
+  const user = await User.add({
     name,
     email,
-    password: '123',
+    password: await User.encryptPassword('123'),
   });
-  await user.save();
 
   //language=GraphQL
   const query = `
@@ -49,7 +48,7 @@ it('should not register with the an existing email', async () => {
 });
 
 it('should create a new user with parameters are valid', async () => {
-  const email = 'awesome@example.com';
+  const email = 'awesomeexitingprimadona@example.com';
 
   //language=GraphQL
   const query = `
@@ -71,6 +70,7 @@ it('should create a new user with parameters are valid', async () => {
   const context = getContext();
 
   const result = await graphql(schema, query, rootValue, context);
+
   const { RegisterEmail } = result.data;
 
   const user = await User.findOne({

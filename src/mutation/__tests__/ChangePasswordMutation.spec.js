@@ -37,12 +37,11 @@ it('should not change password of non authorized user', async () => {
 });
 
 it('should not change password if oldPassword is invalid', async () => {
-  const user = new User({
+  const user = await User.add({
     name: 'user',
     email: 'awesome@example.com',
     password: 'awesome',
   });
-  await user.save();
 
   //language=GraphQL
   const query = `
@@ -70,12 +69,11 @@ it('should not change password if oldPassword is invalid', async () => {
 it('should change password if oldPassword is correct', async () => {
   const password = 'awesome';
 
-  const user = new User({
+  const user = await User.add({
     name: 'user',
     email: 'awesome@example.com',
-    password,
+    password: await User.encryptPassword(password),
   });
-  await user.save();
 
   //language=GraphQL
   const query = `
