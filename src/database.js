@@ -1,15 +1,10 @@
 // @flow
 
-import arangoose from 'arangoose';
+import Arangoose from '@jfa/arangoose';
 import { databaseConfig } from './config';
 
-export default function connectDatabase() {
-  return new Promise((resolve, reject) => {
-    arangoose.connection
-      .on('error', error => reject(error))
-      .on('close', () => console.log('Database connection closed.'))
-      .once('open', () => resolve(arangoose.connections[0]));
-    arangoose.connect(
+export default async function connectDatabase() {
+  return await Arangoose.connect(
       databaseConfig.host,
       databaseConfig.database,
       databaseConfig.port,
@@ -20,5 +15,4 @@ export default function connectDatabase() {
         }
         : null
     );
-  });
-}
+  }

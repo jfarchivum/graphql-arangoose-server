@@ -3,7 +3,7 @@
   "description": "Graphql Arangoose Boilerplate based on https://github.com/entria/graphql-dataloader-boilerplate",
   "version": "0.0.1",
   "dependencies": {
-    "@jfa/arangoose": "0.0.1",
+    "@jfa/arangoose": "0.0.7",
     "babel-polyfill": "^6.23.0",
     "bcrypt-as-promised": "^1.1.0",
     "dataloader": "^1.3.0",
@@ -13,13 +13,13 @@
     "isomorphic-fetch": "^2.2.1",
     "jsonwebtoken": "^7.3.0",
     "koa": "^2.2.0",
-    "koa-bodyparser": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
     "koa-compose": "^4.0.0",
     "koa-convert": "^1.2.0",
     "koa-cors": "0.0.16",
-    "koa-graphql": "^0.6.2",
+    "koa-graphql": "^0.7.0",
     "koa-graphql-batch": "^1.1.0",
-    "koa-logger": "^2.0.1",
+    "koa-logger": "^3.0.0",
     "koa-router": "^7.1.1"
   },
   "devDependencies": {
@@ -29,13 +29,13 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
-    "flow-bin": "^0.44.0",
-    "jest": "19.0.2",
-    "jest-cli": "19.0.2",
+    "flow-bin": "^0.46.0",
+    "jest": "20.0.1",
+    "jest-cli": "20.0.1",
     "nodemon": "^1.10.2",
-    "reify": "^0.7.4",
+    "reify": "^0.11.0",
     "repl": "^0.1.3",
     "repl-promised": "^0.1.0",
     "repl.history": "^0.1.4",
@@ -54,7 +54,7 @@
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
     "moduleNameMapper": {
-      "^arangoose$": "<rootDir>/node_modules/arangoose"
+      "^arangoose$": "<rootDir>/node_modules/@jfa/arangoose"
     }
   },
   "license": "MIT",
