@@ -8,6 +8,7 @@ import {
 
 import UserType from '../type/UserType';
 import { UserLoader } from '../loader';
+import { User } from '../model';
 
 export default mutationWithClientMutationId({
   name: 'ChangePassword',
@@ -33,7 +34,7 @@ export default mutationWithClientMutationId({
       };
     }
 
-    user.password = password;
+    user.password = await User.encryptPassword(password);
     await user.save();
 
     return {

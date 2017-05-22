@@ -35,12 +35,11 @@ export default mutationWithClientMutationId({
       };
     }
 
-    user = new User({
+    user = await User.add({
       name,
       email,
-      password,
+      password: await User.encryptPassword(password),
     });
-    await user.save();
 
     return {
       token: generateToken(user),
