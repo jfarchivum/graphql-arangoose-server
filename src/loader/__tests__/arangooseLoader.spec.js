@@ -1,5 +1,4 @@
 import { User } from '../../model';
-import { Password } from '../../model/User';
 import { setupTest } from '../../../test/helper';
 import arangooseLoader from '../arangooseLoader';
 

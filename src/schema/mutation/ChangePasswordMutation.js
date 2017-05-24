@@ -7,8 +7,8 @@ import {
 } from 'graphql-relay';
 
 import UserType from '../type/UserType';
-import { UserLoader } from '../loader';
-import { User } from '../model';
+import { UserLoader } from '../../loader';
+import { User } from '../../model';
 
 export default mutationWithClientMutationId({
   name: 'ChangePassword',

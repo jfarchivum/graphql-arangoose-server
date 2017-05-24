@@ -2,7 +2,7 @@
 
 import { nodeDefinitions, fromGlobalId } from 'graphql-relay';
 
-import { UserLoader, ViewerLoader } from '../loader';
+import { UserLoader, ViewerLoader } from '../../loader';
 
 import ViewerType from '../type/ViewerType';
 import UserType from '../type/UserType';

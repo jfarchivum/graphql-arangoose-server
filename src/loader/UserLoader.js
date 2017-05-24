@@ -1,7 +1,7 @@
 // @flow
 import DataLoader from 'dataloader';
+import { connectionFromPromisedArray } from 'graphql-relay';
 import { User as UserModel } from '../model';
-import {connectionFromPromisedArray} from 'graphql-relay';
 import arangooseLoader from './arangooseLoader';
 
 type UserType = {
@@ -9,7 +9,7 @@ type UserType = {
   _id: string,
   name: string,
   email: string,
-  active: boolean,
+  active: boolean
 };
 
 export default class User {
@@ -31,7 +31,8 @@ export default class User {
     }
   }
 
-  static getLoader = () => new DataLoader(ids => arangooseLoader(UserModel, ids));
+  static getLoader = () =>
+    new DataLoader(ids => arangooseLoader(UserModel, ids));
 
   static viewerCanSee(viewer, data) {
     // Anyone can se another user
@@ -39,7 +40,6 @@ export default class User {
   }
 
   static async load({ user: viewer, dataloaders }, id) {
-
     if (!id) return null;
 
     const data = await dataloaders.UserLoader.load(id);
@@ -62,9 +62,7 @@ export default class User {
   // }
 
   static async loadUsers(context, { connectionArguments, ...searchArgs }) {
-    const users = UserModel
-      .find(searchArgs);
+    const users = UserModel.find(searchArgs);
     return connectionFromPromisedArray(users, connectionArguments);
   }
 }
-

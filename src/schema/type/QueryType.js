@@ -3,7 +3,7 @@
 import { GraphQLObjectType } from 'graphql';
 import { NodeField } from '../interface/NodeInterface';
 
-import { ViewerLoader } from '../loader';
+import { ViewerLoader } from '../../loader';
 import ViewerType from './ViewerType';
 
 export default new GraphQLObjectType({

@@ -1,10 +1,10 @@
 import { graphql } from 'graphql';
-import { schema } from '../../schema';
+import { schema } from '../../index.js';
 import {
   getContext,
   setupTest,
-} from '../../../test/helper';
-import { User } from '../../model'
+} from '../../../../test/helper';
+import { User } from '../../../model';
 
 
 beforeEach(async () => await setupTest());

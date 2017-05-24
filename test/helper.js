@@ -7,7 +7,7 @@ import { databaseConfig } from '../src/config'
 
 const dbConfig = {
   DB_HOST: '192.168.99.100',
-  DB_PORT: '32771',
+  DB_PORT: '32779',
   DB_USERNAME: 'root',
   DB_PASSWORD: 'test',
   DB_NAME: 'test'

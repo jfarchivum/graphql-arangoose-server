@@ -1,13 +1,13 @@
 import { graphql } from 'graphql';
 import { toGlobalId, fromGlobalId } from 'graphql-relay';
-import { schema } from '../../schema';
+import { schema } from '../../index.js';
 import {
   User,
-} from '../../model';
+} from '../../../model';
 import {
   getContext,
   setupTest,
-} from '../../../test/helper';
+} from '../../../../test/helper';
 
 beforeEach(async () => await setupTest());
 

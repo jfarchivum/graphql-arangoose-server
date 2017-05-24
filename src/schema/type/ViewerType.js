@@ -10,7 +10,7 @@ import { globalIdField, connectionArgs, fromGlobalId } from 'graphql-relay';
 import { NodeInterface } from '../interface/NodeInterface';
 
 import UserType from './UserType';
-import { UserLoader } from '../loader';
+import { UserLoader } from '../../loader';
 import UserConnection from '../connection/UserConnection';
 
 export default new GraphQLObjectType({
